@@ -10,6 +10,12 @@
 						<li class="nav-item">
 							<a class="nav-link {{  $principal ?? ''}}" href="/dashboard">Principal</a>
 						</li>
+						<li class="nav-item">
+						<a class="nav-link {{  $lector ?? ''}} disabled" href="/">Lector</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link {{  $datos ?? ''}} disabled" href="/">Datos</a>
+						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle {{ $sistema ?? ''}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Sistema
@@ -25,7 +31,7 @@
 				<div class="collapse navbar-collapse">
 					<a class="navbar-brand" href="">
 						<img src="/icons/5991785_coronavirus_countries_infected_map_spread_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="logotipo" loading="lazy">
-						Brand Name
+						Consello CPM
 					</a>
 				</div>
 					@guest
