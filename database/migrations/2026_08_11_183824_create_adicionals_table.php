@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('adicionals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->id();
-            $table->timestamps();
             $table->integer('cantidad');
             $table->string('nombre');
             $table->unsignedBigInteger('evento_id');

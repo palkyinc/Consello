@@ -8,16 +8,21 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link {{  $principal ?? ''}}" href="/dashboard">Principal</a>
+							<a class="nav-link" href="/dashboard">Principal</a>
 						</li>
 						<li class="nav-item">
-						<a class="nav-link {{  $lector ?? ''}} disabled" href="/">Lector</a>
-						</li>
-						<li class="nav-item">
-						<a class="nav-link {{  $datos ?? ''}} disabled" href="/">Datos</a>
+						<a class="nav-link disabled" href="/">Lector</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle {{ $sistema ?? ''}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Datos
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="/eventos">Eventos</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Sistema
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -12,6 +12,7 @@
 ## [0.0.5] - 2026-08-XX
 ### Added 
 - Se agrego los modelos y migración de Adicional_Cache, Adicional, Evento, Reserva. 
+- ABM de Eventos, falta la carga del flyer.
 
 ## [0.0.4] - 2026-08-04
 ### Added 

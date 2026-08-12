@@ -38,5 +38,8 @@
     <div>
         <h1 class="open-sans-fonts">PalkyDev</h1>
     </div>
+    <div>
+        <a href="/clientes" class="btn btn-primary">Reservar</a>
+    </div>
 </body>
 </html>

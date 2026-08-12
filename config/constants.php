@@ -18,6 +18,9 @@ return [
             'clientes_index',
             'clientes_edit',
             'clientes_create',
+            'eventos_index',
+            'eventos_edit',
+            'eventos_create',
     ),
     'ROLES_LIST_FACTORY' => array(
             'Admin',
