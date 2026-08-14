@@ -61,26 +61,6 @@
                                     title="Editar">
                                     <img src="icons/314724_document_edit_icon.svg" alt="imagen de lapiz editor" height="20px">
                                 </button>
-                                {{--  <button wire:click="editRolToUser({{ $evento->id }})"
-                                    class="margenAbajo btn btn-outline-secundary"
-                                    title="Editar Roles">
-                                    <img src="icons/9161347_log_out_input_access_security_icon.svg" alt="imagen de Cambio de Roles" height="20px">
-                                </button>
-                                @if ($evento->disabled)
-                                    <button wire:click="enable({{ $evento->id }})" 
-                                            wire:confirm="¿Está seguro que Habilita ests usuario?"
-                                            class="margenAbajo btn btn-outline-secundary" 
-                                            title="Habilitar">
-                                        <img src="icons/accept_approve_check_green_ok_icon.svg" alt="enable icon" height="20px">
-                                    </button>
-                                @else
-                                    <button wire:click="disable({{ $evento->id }})"
-                                            wire:confirm="¿Está seguro que Deshabilita ests usuario?"
-                                            class="margenAbajo btn btn-outline-secundary"
-                                            title="Deshabilitar">
-                                        <img src="icons/cross_delete_remove_cancel_icon.svg" alt="delete basket" height="20px">
-                                    </button>
-                                @endif --}}
                             @else
                                     Sin Permisos Editar
                             @endcan
@@ -88,8 +68,8 @@
                                 <button wire:click="delete({{ $evento->id }})"
                                     wire:confirm="Eliminiras Reservas y Adicionales relacionado con el Evento ¿Estás seguro?"
                                     title="Eliminar Evento"
-                                    class="btn btn-danger">
-                                    Eliminar
+                                    class="margenAbajo btn btn-outline-secundary">
+                                    <img src="icons/trash_delete_bin_remove_icon.svg" alt="delete basket" height="20px">
                                 </button>
                             @endcan
                         </td>

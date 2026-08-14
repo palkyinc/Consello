@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->unsignedBigInteger('creador_id');
             $table->foreign('creador_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('ruta_archivo')->nullable(); // <--- Usar string (VARCHAR 255)
         });
     }
 

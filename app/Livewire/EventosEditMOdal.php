@@ -9,11 +9,15 @@ use Livewire\Form;
 use app\Models\Evento;
 use Illuminate\Support\Facades\Config;
 use Livewire\Attributes\Computed;
+use Livewire\WithFileUploads;
 
 class EventosEditMOdal extends Component
 {
+    use WithFileUploads;    
+
     public $evento;
     public $ant_evento_id;
+    public $status = null;
 
     #[Reactive] 
     public $evento_id;
@@ -24,6 +28,8 @@ class EventosEditMOdal extends Component
     public $fecha;
     #[Validate('required|string|max:65535')]
     public $descripcion = '';
+    #[Validate('nullable|file|max:10240')] // Máximo 10MB (en KB)
+    public $archivo; // Aquí se mapea el input file
     
     protected $messages = [
         'nombre.required' => 'El nombre es obligatorio.',
@@ -33,6 +39,8 @@ class EventosEditMOdal extends Component
         'fecha.date' => 'La fecha no es válida.',
         'descripcion.required' => 'La descripción es obligatoria.',
         'descripcion.max' => 'Como máximo 65535 caracteres.',
+        'archivo.file' => 'Debe ser un archivo válido.',
+        'archivo.max' => 'El archivo no debe superar los 10MB.',
     ];
 
     public function mount(int $evento_id)
@@ -44,7 +52,7 @@ class EventosEditMOdal extends Component
     {
         if ($this->evento_id && $this->evento_id !== $this->ant_evento_id) {
             $this->evento = Evento::
-                select("id", "nombre", "fecha", "descripcion", "creador_id")
+                select("id", "nombre", "fecha", "descripcion", "ruta_archivo")
                 ->find($this->evento_id);
             $this->nombre = $this->evento->nombre;
             $this->fecha = $this->evento->fecha;
@@ -59,23 +67,46 @@ class EventosEditMOdal extends Component
     public function update()
     {
         $this->validate();
-        $evento = Evento::find($this->evento_id);
-        if ($evento) {
-            $evento->nombre = $this->nombre;
-            $evento->fecha = $this->fecha;
-            $evento->descripcion = $this->descripcion;
-            $evento->save();
+        
+        if ($this->evento) {
+            if ($this->archivo) {
+                $rutaRelativa = $this->archivo->store('eventos/flyers', 'public');
+                $this->evento->ruta_archivo = $rutaRelativa;
+                $this->status['success'][] = 'Archivo Guardado en el evento: ' . $this->evento->nombre;
+            }
+            $this->evento->nombre = $this->nombre;
+            $this->evento->fecha = $this->fecha;
+            $this->evento->descripcion = $this->descripcion;
+            $this->evento->save();
+            $this->status['success'][] = 'Evento: ' . $this->evento->nombre . ' fue editado.';
+        } else {
+            $this->status['error'][] = 'Evento no encontrado.';
         }
         $this->closeModal();
+    }
+    public function deleteFile()
+    {
+        if ($this->evento && $this->evento->ruta_archivo) {
+            // Eliminar el archivo del almacenamiento
+            \Storage::disk('public')->delete($this->evento->ruta_archivo);
+            // Actualizar la ruta del archivo en la base de datos
+            $this->evento->ruta_archivo = null;
+            $this->evento->save();
+            $this->status['warning'][] = 'Archivo del evento: ' . $this->evento->nombre . ' fue eliminado.';
+        } else {
+            $this->status['error'][] = 'No hay archivo para eliminar.';
+        }
     }
     public function closeModal()
     {
         $this->reset('nombre');
         $this->reset('fecha');
         $this->reset('descripcion');
+        $this->reset('archivo');
         $this->reset('evento');
         $this->reset('ant_evento_id');
         $this->resetValidation();
-        $this->dispatch('closeModal');
+        $this->dispatch('closeModal', ['status' => $this->status]);
+        $this->reset('status');
     }
 }

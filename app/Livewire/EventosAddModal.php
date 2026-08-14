@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Config;
 
 class EventosAddModal extends Component
 {
+    public $status = null;    
+
     #[Validate('required|string|max:50')]
     public $nombre = '';
 
@@ -40,6 +42,7 @@ class EventosAddModal extends Component
         $evento->fecha = $this->fecha;
         $evento->creador_id = auth()->user()->id;
         $evento->save();
+        $this ->status['success'][] = 'Evento: ' . $this->nombre . ' se ha creado correctamente.';
         $this->closeModal();
     }
     public function closeModal()
@@ -48,6 +51,7 @@ class EventosAddModal extends Component
         $this->reset('descripcion');
         $this->reset('fecha');
         $this->resetValidation();
-        $this->dispatch('closeModal');
+        $this->dispatch('closeModal', ['status' => $this->status]);
+        $this->reset('status');
     }
 }

@@ -17,8 +17,6 @@ class Eventos extends Component
 
     public $nombre;
 
-    public $mensajes = [];
-
     public function mount() 
     {
     }
@@ -28,9 +26,13 @@ class Eventos extends Component
     }
 
     #[On('closeModal')]
-    public function closeModal ()
+    public function closeModal (array $status = null)
     {
+        if ($status) {
+            session()->flash('status', $status['status']);
+        }
         $this->dispatch('cerrarModal');
+
     }
     private function getEventos()
     {
@@ -43,6 +45,11 @@ class Eventos extends Component
         $this->evento_id = $evento_id;
         $this->dispatch('showEditModal');
     }
+    public function editFile(int $evento_id)
+    {
+        $this->evento_id = $evento_id;
+        $this->dispatch('showEditFileModal');
+    }
     public function upperNombre()
     {
         return strtoupper($this->nombre);
@@ -51,12 +58,16 @@ class Eventos extends Component
     {
         $evento = Evento::find($evento_id);
         if ($evento) {
-            $status['success'][] = 'Evento "' . $evento->nombre . '" eliminado correctamente.';
+            if($evento->ruta_archivo) {
+                 \Storage::disk('public')->delete($evento->ruta_archivo);
+            }
+            $status['warning'][] = 'Evento "' . $evento->nombre . '" eliminado correctamente.';
             $evento->delete();
         }
         else {
             $status['errors'][] = 'Evento no encontrado.';
         }
+        $status['warning'][] = 'Verificar dependencias antes de eliminar.';
         session()->flash('status', $status);
     }
 }

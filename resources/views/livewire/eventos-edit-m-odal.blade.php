@@ -29,6 +29,32 @@
                                     @error('descripcion') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
+                            <div class="form-group col-md-12">
+                                <label for="archivo">Flyer: </label>
+                                @if ($evento && $evento->ruta_archivo)
+                                    <p>Archivo actual: <a href="{{ asset('storage/' . $evento->ruta_archivo) }}" target="_blank">Ver archivo</a></p>
+                                    <button 
+                                        type="button"
+                                        class="btn btn-danger"
+                                        wire:click="deleteFile"
+                                        wire:confirm="¿Estás seguro de que quieres borrar el archivo?"
+                                        >
+                                        Borrar Archivo</button>
+                                @else
+                                    <label for="archivo" class="form-label">Adjuntar Archivo</label>
+                                    <input type="file" id="archivo" class="form-control @error('archivo') is-invalid @enderror" wire:model="archivo">
+                                    
+                                    <!-- Indicador de carga de Livewire -->
+                                    <div wire:loading wire:target="archivo" class="form-text text-info mt-1">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Cargando archivo...
+                                    </div>
+
+                                    @error('archivo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
