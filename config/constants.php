@@ -21,9 +21,14 @@ return [
             'eventos_index',
             'eventos_edit',
             'eventos_create',
+            'adicionales_index',
+            'adicionales_edit',
+            'adicionales_create',
     ),
     'ROLES_LIST_FACTORY' => array(
             'Admin',
             'Cliente',
+            'Staff Ingreso',
+            'Staff Barra'
     ),
 ];

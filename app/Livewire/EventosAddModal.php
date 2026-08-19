@@ -16,10 +16,16 @@ class EventosAddModal extends Component
 
     #[Validate('required|string|max:65535')]
     public $descripcion = '';
-
+    
     #[Validate('required|date')]
     public $fecha = '';
 
+    #[Validate('required|numeric|min:0')]
+    public $precio = 0;
+
+    #[Validate('required|numeric|min:0|max:999')]
+    public $aforo = 0;
+    
     protected $messages = [
         'nombre.required' => 'El nombre es obligatorio.',
         'nombre.max' => 'Como máximo 50 caracteres.',
@@ -27,6 +33,13 @@ class EventosAddModal extends Component
         'descripcion.max' => 'Como máximo 65535 caracteres.',
         'fecha.required' => 'La fecha es obligatoria.',
         'fecha.date' => 'La fecha no es válida.',
+        'precio.required' => 'El precio es obligatorio',
+        'precio.numeric' => 'El precio debe ser un numero',
+        'precio.min' => 'El precio debe ser cero o mayor',
+        'aforo.required' => 'El aforo es obligatorio',
+        'aforo.numeric' => 'El aforo debe ser un numero',
+        'aforo.min' => 'El aforo debe ser cero o mayor',
+        'aforo.max' => 'El aforo debe ser menor a 1000',
     ];
 
     public function render()
@@ -40,6 +53,8 @@ class EventosAddModal extends Component
         $evento->nombre = $this->nombre;
         $evento->descripcion = $this->descripcion;
         $evento->fecha = $this->fecha;
+        $evento->precio = $this->precio;
+        $evento->aforo = $this->aforo;
         $evento->creador_id = auth()->user()->id;
         $evento->save();
         $this ->status['success'][] = 'Evento: ' . $this->nombre . ' se ha creado correctamente.';
@@ -50,6 +65,8 @@ class EventosAddModal extends Component
         $this->reset('nombre');
         $this->reset('descripcion');
         $this->reset('fecha');
+        $this->reset('precio');
+        $this->reset('aforo');
         $this->resetValidation();
         $this->dispatch('closeModal', ['status' => $this->status]);
         $this->reset('status');

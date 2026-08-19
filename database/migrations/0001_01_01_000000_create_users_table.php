@@ -27,7 +27,11 @@ return new class extends Migration
             $table->string('password5')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('disabled')->nullable();
+            $table->boolean('disabled')->default(false);
+            $table->string('dni', 8)->nullable();
+            $table->string('celular', 15)->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->boolean('vegeta')->default(false);
         });
         $user = App\Models\User::factory()->make();
         $user->save();

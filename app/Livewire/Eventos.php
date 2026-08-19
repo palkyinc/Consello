@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\Form;
 use App\Models\Evento;
+use App\Models\Adicional;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
@@ -36,7 +37,7 @@ class Eventos extends Component
     }
     private function getEventos()
     {
-        return Evento::select("id", "nombre", "fecha", "creador_id")
+        return Evento::select("id", "nombre", "fecha", "precio", "creador_id")
                     ->whereRaw("UPPER(nombre) LIKE (?)", ["%{$this->upperNombre()}%"])
                     ->paginate(10);
     }
@@ -61,6 +62,15 @@ class Eventos extends Component
             if($evento->ruta_archivo) {
                  \Storage::disk('public')->delete($evento->ruta_archivo);
             }
+            ##Borrar Adicionales
+            if ($adicionales = Adicional::where('evento_id', $evento->id)->get()) {
+                foreach ($adicionales as $adicional) {
+                    $adicional->delete();
+                }
+                $status['warning'][] = 'Adicionales relacionados con el Evento "' . $evento->nombre . '" eliminados correctamente.';
+            }
+            #Borrar Adiocionales_Cache
+            #Borrar Reservas
             $status['warning'][] = 'Evento "' . $evento->nombre . '" eliminado correctamente.';
             $evento->delete();
         }

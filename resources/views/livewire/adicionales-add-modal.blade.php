@@ -9,17 +9,17 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="name">Nombre: </label>
-                            <input type="text" name="nombre" wire:model.blur="nombre"  class="form-control @error('nombre') is-invalid @enderror">
+                            <label for="cantidad">Cantidad: </label>
+                            <input type="text" name="cantidad" wire:model.blur="cantidad"  class="form-control @error('cantidad') is-invalid @enderror">
                             <div>
-                                @error('nombre') <div class="text-danger">{{ $message }}</div> @enderror
+                                @error('cantidad') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="fecha">Fecha: </label>
-                            <input type="date" name="fecha" wire:model.blur="fecha" class="form-control @error('fecha') is-invalid @enderror">
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" wire:model.blur="nombre"  class="form-control @error('nombre') is-invalid @enderror">
                             <div>
-                                @error('fecha') <div class="text-danger">{{ $message }}</div> @enderror
+                                @error('nombre') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="form-group col-md-6">
@@ -27,20 +27,6 @@
                             <input type="text" name="precio" wire:model.blur="precio"  class="form-control @error('precio') is-invalid @enderror">
                             <div>
                                 @error('precio') <div class="text-danger">{{ $message }}</div> @enderror
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="aforo">Aforo: </label>
-                            <input type="text" name="aforo" wire:model.blur="aforo"  class="form-control @error('aforo') is-invalid @enderror">
-                            <div>
-                                @error('aforo') <div class="text-danger">{{ $message }}</div> @enderror
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="descripcion">Descripción: </label>
-                            <textarea name="descripcion" id="" rows="10" wire:model.blur="descripcion" class="form-control @error('descripcion') is-invalid @enderror"></textarea>
-                            <div>
-                                @error('descripcion') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                         </div>
                     </div>

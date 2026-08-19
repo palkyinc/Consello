@@ -16,17 +16,19 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('evento_id');
             $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id')->nullable();
             $table->foreign('cliente_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('pagada')->default(false);
+            $table->integer('tot_pagado')->default(0);
             $table->boolean('usada')->default(false);
             $table->boolean('invitado')->default(false);
-            $table->unsignedBigInteger('check_by_id');
+            $table->unsignedBigInteger('check_by_id')->nullable();
             $table->foreign('check_by_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('creador_id');
             $table->foreign('creador_id')->references('id')->on('users')->onDelete('cascade');
             $table->dateTime('fecha_pago')->nullable();
             $table->string('ticket_code', 255)->nullable();
+            $table->string('ruta_comprobante')->nullable(); // <--- Usar string (VARCHAR 255)
         });
     }
 

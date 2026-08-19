@@ -9,6 +9,10 @@ class Evento extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'fecha' => 'date', // o 'date' si solo guarda año-mes-día
+    ];
+
     /**
      * The attributes that are mass assignable.
      *

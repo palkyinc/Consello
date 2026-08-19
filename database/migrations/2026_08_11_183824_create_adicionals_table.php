@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('cantidad');
-            $table->string('nombre');
+            $table->string('nombre', 45);
+            $table->integer('precio');
             $table->unsignedBigInteger('evento_id');
             $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
             $table->unsignedBigInteger('creador_id');

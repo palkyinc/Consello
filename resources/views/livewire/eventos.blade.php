@@ -34,6 +34,8 @@
                     <tr>
                         <th scope="col"> Nombre </th>
                         <th scope="col"> Fecha </th>
+                        <th scope="col"> Precio </th>
+                        <th scope="col"> Adicionales </th>
                         <th scope="col"> Creador </th>
                         <th scope="col" colspan="2">
                             @can('eventos_create')
@@ -53,6 +55,8 @@
                         
                         <td  scope="row">{{$evento->nombre}}</td>
                         <td>{{\Carbon\Carbon::parse($evento->fecha)->format('D d/M/Y')}}</td>
+                        <td>${{ number_format($evento->precio, 2) }}</td>
+                        <td>Contador de Adicionales</td>
                         <td>{{App\Models\User::find($evento->creador_id)->name}}</td>
                         <td>
                             @can('eventos_edit')
@@ -61,6 +65,11 @@
                                     title="Editar">
                                     <img src="icons/314724_document_edit_icon.svg" alt="imagen de lapiz editor" height="20px">
                                 </button>
+                                <a href="{{ route('adicionales', ['evento_id' => $evento->id]) }}"
+                                    class="margenAbajo btn btn-outline-secundary"
+                                    title="ABM Adicionales">
+                                    <img src="icons/file_type_swig_icon_130132.svg" alt="imagen de lapiz editor" height="20px">
+                                </a>
                             @else
                                     Sin Permisos Editar
                             @endcan
