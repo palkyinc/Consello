@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="oFpMO0OW1OUmjf2Le1pn">
+    <mxGraphModel dx="775" dy="1152" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-3" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-1" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" value="Cliente INICIA" vertex="1">
+          <mxGeometry height="60" width="100" x="80" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Quiere Reservar desde landing page" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-11" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="364" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Registra:&lt;div&gt;Nom y Ape&lt;/div&gt;&lt;div&gt;Email&lt;/div&gt;&lt;div&gt;Contraseńa&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="314" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-10" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-4" value="NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-5" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="Esta Registrado?" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-6" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="HBfZl12evLRnZZbZ9I7A-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Se envia email de confirmación de casilla" vertex="1">
+          <mxGeometry height="100" width="100" x="314" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-12" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-7" value="NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-14" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-15" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-8" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="Email Verificado?" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-9" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="HBfZl12evLRnZZbZ9I7A-8" value="SI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-18" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Elige:&lt;div&gt;Cantidad (MAX 4)&lt;/div&gt;&lt;div&gt;Adicionales&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-16" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.01;entryY=0.61;entryDx=0;entryDy=0;entryPerimeter=0;" target="HBfZl12evLRnZZbZ9I7A-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="364" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Se envia Email&lt;div&gt;1. Datos de Transferencia&lt;/div&gt;&lt;div&gt;2. Link para cargar comprobante&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Se verifica Transferencia. ENTRADA/S VENDIDA/S" vertex="1">
+          <mxGeometry height="100" width="100" x="80" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-22" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-19" value="SI">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-24" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HBfZl12evLRnZZbZ9I7A-23" value="NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-20" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="Luego 24hs&lt;div&gt;Se Cargo Transferencia&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="120" x="70" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-21" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="HBfZl12evLRnZZbZ9I7A-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-27" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="HBfZl12evLRnZZbZ9I7A-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="Se enviaron email informando baja de la reserva.&lt;div&gt;Se da de baja la reserva&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="100" x="330" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-25" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="FIN" vertex="1">
+          <mxGeometry height="60" width="100" x="330" y="1050" as="geometry" />
+        </mxCell>
+        <mxCell id="HBfZl12evLRnZZbZ9I7A-26" edge="1" parent="1" source="HBfZl12evLRnZZbZ9I7A-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="HBfZl12evLRnZZbZ9I7A-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
