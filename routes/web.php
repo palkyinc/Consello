@@ -9,6 +9,7 @@ use App\Livewire\Dashboard;
 use App\Livewire\Clientes;
 use App\Livewire\Eventos;
 use App\Livewire\Adicionales;
+use App\Livewire\Reservas;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -24,6 +25,7 @@ Route::get('/changeViewMode', [UserController::Class, 'changeViewMode'])->middle
 
 # Routes
 Route::get('/eventos', Eventos::Class)->middleware(['auth', 'verified'])->name('eventos');
+Route::get('/reservas', Reservas::Class)->middleware(['auth', 'verified'])->name('reservas');
 Route::get('/adicionales/{evento_id}', Adicionales::Class)->middleware(['auth', 'verified'])->name('adicionales');
 
 Route::view('profile', 'profile')

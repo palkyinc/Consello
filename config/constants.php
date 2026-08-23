@@ -24,6 +24,9 @@ return [
             'adicionales_index',
             'adicionales_edit',
             'adicionales_create',
+            'reservas_index',
+            'reservas_edit',
+            'reservas_create',
     ),
     'ROLES_LIST_FACTORY' => array(
             'Admin',

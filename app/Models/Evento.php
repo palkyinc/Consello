@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Evento extends Model
 {
@@ -23,4 +24,8 @@ class Evento extends Model
         'nombre',
         'descripcion',
     ];
+    public function getFlyerUrlAttribute(): ?string
+    {
+        return $this->ruta_archivo ? Storage::url($this->ruta_archivo) : null;
+    }
 }

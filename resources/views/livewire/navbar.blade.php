@@ -7,7 +7,9 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					@hasrole ('Cliente')
-						<p m-5 p-5>Clientes</p>	
+						<li class="nav-item p-2">
+							<a class="nav-link" href="/clientes">Eventos</a>
+						</li>	
 					@else
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
@@ -38,9 +40,8 @@
 					@endif
 				</div>
 				<div class="collapse navbar-collapse">
-					<a class="navbar-brand" href="">
-						<img src="/icons/5991785_coronavirus_countries_infected_map_spread_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="logotipo" loading="lazy">
-						Consello CPM
+					<a class="navbar-brand font-orbitron" href="">
+						CONSELLO CPM
 					</a>
 				</div>
 					@guest
@@ -73,6 +74,7 @@
 												@csrf
 											</form>
 										</li>
+										<li><a class="dropdown-item" href="/reservas">Mis Reservas</a></li>
 										<li><a class="dropdown-item" href="changeViewMode">Día / Noche</a></li>
 									</ul>
 								</li>

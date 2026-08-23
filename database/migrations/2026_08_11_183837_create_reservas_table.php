@@ -29,6 +29,8 @@ return new class extends Migration
             $table->dateTime('fecha_pago')->nullable();
             $table->string('ticket_code', 255)->nullable();
             $table->string('ruta_comprobante')->nullable(); // <--- Usar string (VARCHAR 255)
+            //$table->unsignedBigInteger('reserva_main_id');
+            $table->foreignId('reserva_main_id')->nullable()->constrained('reservas')->nullOnDelete();
         });
     }
 

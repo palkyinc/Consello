@@ -14,6 +14,8 @@
 - Se agrego los modelos y migración de Adicional_Cache, Adicional, Evento, Reserva. 
 - ABM de Eventos.
 - Modal de Reservas
+- VIsta reservas del cliente
+- refactory de welcome Blade.
 
 ## [0.0.4] - 2026-08-04
 ### Added 

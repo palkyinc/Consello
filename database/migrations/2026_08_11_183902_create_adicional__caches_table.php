@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('reserva_id')->references('id')->on('reservas')->onDelete('cascade');
             $table->unsignedBigInteger('adicional_id');
             $table->foreign('adicional_id')->references('id')->on('adicionals')->onDelete('cascade');
-            $table->unsignedBigInteger('check_by_id');
+            $table->unsignedBigInteger('check_by_id')->nullable();
             $table->foreign('check_by_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('usada')->default(false);
         });

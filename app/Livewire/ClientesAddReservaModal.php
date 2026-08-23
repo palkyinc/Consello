@@ -10,7 +10,10 @@ use Livewire\Form;
 use Illuminate\Support\Facades\Config;
 use App\Models\Evento;
 use App\Models\Adicional;
+use App\Models\Adicional_Cache;
 use App\Models\Reserva;
+use App\Mail\ReservaConfirmadaMail;
+use Illuminate\Support\Facades\Mail;
 
 class ClientesAddReservaModal extends Component
 {
@@ -85,26 +88,60 @@ class ClientesAddReservaModal extends Component
         }
         
     }
+    public function calculoReservas ()
+    {
+        return count(auth()->user()->reservas);
+    }
     public function save ()
     {
         $this->validate([
-        'cant_entradas' => 'required|numeric|min:1|max:4',
+        'cant_entradas' => 'required|numeric|min:1|max:' . (4 - $this->calculoReservas()),
             // Reglas para CADA adicional dentro del array asociativo
         'seleccion_adicionales.*' => 'required|integer|min:0|max:3',
-    ], [
+        ], [
         // Mensajes personalizados opcionales
         'seleccion_adicionales.*.min' => 'La cantidad no puede ser menor a 0.',
         'seleccion_adicionales.*.max' => 'No puedes solicitar más de 10 unidades de este adicional.',
         'seleccion_adicionales.*.integer' => 'El valor debe ser un número entero.',
         'cant_entradas.required' => 'La cantidad es obligatoria.',
         'cant_entradas.min' => 'Mínimo 1 entrada.',
-        'cant_entradas.max' => 'Máximo 4 entradas.',
+        'cant_entradas.max' => 'Sobrepasaste limt. compra.',
         'cant_entradas.numeric' => 'La cantidad de entradas debe ser numerico',
         ]);
-        #CRear la reserva
-        #Crear los adicionales
+        #Crear la reserva/s
+        $reserva_main_id = null;
+        for ($i=0; $i < $this->cant_entradas; $i++) { 
+            $reserva = Reserva::create([
+                'evento_id' => $this->evento->id ,
+                'tot_pagado' => $this->total_depositar ,
+                'creador_id' => auth()->user()->id ,
+                'reserva_main_id' => !$reserva_main_id ? null :  $reserva_main_id,
+            ]);
+            if (!$reserva_main_id) {
+                $reserva_main_id = $reserva->id;
+                $reserva_main = $reserva;
+            }            
+            #Crear los adicional/s
+            foreach ($this->adicionales as $adicional) {
+                $cantAdicional = (int) ($this->seleccion_adicionales[$adicional->id] ?? 0);
+            
+                // Si el adicional tiene precio (> 0), se suma
+                if ($adicional->precio === 0 || ($adicional->precio > 0 && $cantAdicional > 0)) {
+                    for ($f=0; $f < ($adicional->cantidad * $cantAdicional); $f++) { 
+                        Adicional_Cache::create([
+                            'reserva_id' => $reserva->id , 
+                            'adicional_id' => $adicional->id ,
+                        ]);
+                    }
+                }
+            }
+        }
+        $this ->status['success'][] = '¡Reserva realizada con éxito! Se envió la confirmación a tu correo.';
         #enviar un email con el resumen + datos de deposito.
+        Mail::to(auth()->user()->email)->send(new ReservaConfirmadaMail($reserva_main));
         $this->closeModal();
+        session()->flash('mensaje', $this->status);
+        return redirect()->route('reservas');
     }
     public function closeModal()
     {

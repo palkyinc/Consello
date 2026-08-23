@@ -13,18 +13,26 @@
                             <label for="cant_entradas">Entradas:</label>
                         </div>
                         <div class="col-md-2">
-                            <input  type="number" 
-                                    name="cant_entradas"
-                                    id="cant_entradas"
-                                    wire:model.live="cant_entradas"
-                                    class="form-control"
-                                    min="1">
-                            <div>
-                                @error('cant_entradas') <div class="text-danger">{{ $message }}</div> @enderror
-                            </div>
+                            @if ($this->calculoReservas() < 4)
+                                <input  type="number" 
+                                        name="cant_entradas"
+                                        id="cant_entradas"
+                                        wire:model.live="cant_entradas"
+                                        class="form-control"
+                                        min="1">
+                                <div>
+                                    @error('cant_entradas') <div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                            @else
+                                @php
+                                    $cant_entradas + 0;    
+                                @endphp
+                            @endif
                         </div>
-                        <div class="col-md-6">
-                            {{-- MENSAJES --}}
+                        <div class="col-md-6 d-flex aƒlign-items-center justify-content-center">
+                            @if ($this->calculoReservas() > 0)
+                                {{$this->calculoReservas()}} / 4 Realizadas
+                            @endif
                         </div>
                     </div>
                     @foreach ($adicionales as $adi)
