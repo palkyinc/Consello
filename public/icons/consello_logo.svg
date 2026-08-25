@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" width="1600" height="560">
+  <defs>
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4CAF3A"/>
+      <stop offset="45%" stop-color="#C6C22A"/>
+      <stop offset="70%" stop-color="#F2A900"/>
+      <stop offset="100%" stop-color="#F07F1E"/>
+    </linearGradient>
+
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="18"/>
+    </filter>
+
+    <filter id="glowSoft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="34"/>
+    </filter>
+
+    <style>
+      .logo-text {
+        font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+        font-weight: 800;
+        font-size: 230px;
+        letter-spacing: 6px;
+      }
+    </style>
+  </defs>
+
+  <!-- Wide soft glow -->
+  <text x="800" y="330" text-anchor="middle" class="logo-text"
+        fill="none" stroke="url(#neonGradient)" stroke-width="14"
+        filter="url(#glowSoft)" opacity="0.55">CONSELLO</text>
+
+  <!-- Tight glow -->
+  <text x="800" y="330" text-anchor="middle" class="logo-text"
+        fill="none" stroke="url(#neonGradient)" stroke-width="12"
+        filter="url(#glow)" opacity="0.85">CONSELLO</text>
+
+  <!-- Crisp outline layer on top -->
+  <text x="800" y="330" text-anchor="middle" class="logo-text"
+        fill="white" stroke="url(#neonGradient)" stroke-width="9">CONSELLO</text>
+</svg>

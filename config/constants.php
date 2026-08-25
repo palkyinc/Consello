@@ -1,6 +1,6 @@
 <?php
 return [
-    'APP_VERSION' => '0.0.4',
+    'APP_VERSION' => '0.0.5',
     'PASS_EXPIRE' => 3628800,
     'PERMISSIONS_LIST_FACTORY' => array(
             'users_index',
@@ -31,6 +31,7 @@ return [
     'ROLES_LIST_FACTORY' => array(
             'Admin',
             'Cliente',
+            'Staff Admin',
             'Staff Ingreso',
             'Staff Barra'
     ),

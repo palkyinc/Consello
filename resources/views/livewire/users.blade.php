@@ -86,26 +86,26 @@
                                 <button wire:click="edit({{ $User->id }})"
                                     class="margenAbajo btn btn-outline-secundary"
                                     title="Editar">
-                                    <img src="icons/314724_document_edit_icon.svg" alt="imagen de lapiz editor" height="20px">
+                                    <img src="{{url('app-icons/314724_document_edit_icon.svg')}}" alt="imagen de lapiz editor" height="20px">
                                 </button>
                                 <button wire:click="editRolToUser({{ $User->id }})"
                                     class="margenAbajo btn btn-outline-secundary"
                                     title="Editar Roles">
-                                    <img src="icons/9161347_log_out_input_access_security_icon.svg" alt="imagen de Cambio de Roles" height="20px">
+                                    <img src="{{url('app-icons/9161347_log_out_input_access_security_icon.svg')}}" alt="imagen de Cambio de Roles" height="20px">
                                 </button>
                                 @if ($User->disabled)
                                     <button wire:click="enable({{ $User->id }})" 
                                             wire:confirm="¿Está seguro que Habilita ests usuario?"
                                             class="margenAbajo btn btn-outline-secundary" 
                                             title="Habilitar">
-                                        <img src="icons/accept_approve_check_green_ok_icon.svg" alt="enable icon" height="20px">
+                                        <img src="{{url('app-icons/accept_approve_check_green_ok_icon.svg')}}" alt="enable icon" height="20px">
                                     </button>
                                 @else
                                     <button wire:click="disable({{ $User->id }})"
                                             wire:confirm="¿Está seguro que Deshabilita ests usuario?"
                                             class="margenAbajo btn btn-outline-secundary"
                                             title="Deshabilitar">
-                                        <img src="icons/cross_delete_remove_cancel_icon.svg" alt="delete basket" height="20px">
+                                        <img src="{{url('app-icons/cross_delete_remove_cancel_icon.svg')}}" alt="delete basket" height="20px">
                                     </button>
                                 @endif
                             @else

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 @php
-    $fecha_limite= "2026-08-23T15:44:00";
+    $fecha_limite= "2026-08-28T21:59:59";
 @endphp
 @if (new DateTime() > new DateTime($fecha_limite))
     <html lang="es">
@@ -123,9 +123,6 @@
                 
             <script>
                 // Configura la fecha objetivo del contador
-                //const fechaLimite = {{$fecha_limite}};
-                //console.log("{{$hola}}");
-                //const targetDate = new Date("2026-08-23T15:59:00").getTime();
                 const targetDate = new Date("{{$fecha_limite}}").getTime();
 
                 function updateCountdown() {

@@ -9,13 +9,20 @@
 ### To Fixed
 ### Security
 
-## [0.0.5] - 2026-08-XX
+<!-- antes de subir proyecto completo
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear -->
+
+## [0.0.5] - 2026-08-24
 ### Added 
 - Se agrego los modelos y migración de Adicional_Cache, Adicional, Evento, Reserva. 
 - ABM de Eventos.
 - Modal de Reservas
 - VIsta reservas del cliente
 - refactory de welcome Blade.
+- Modificaciones varias por la implementacion en servidor.
 
 ## [0.0.4] - 2026-08-04
 ### Added 

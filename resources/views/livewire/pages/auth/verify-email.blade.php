@@ -15,8 +15,13 @@ new #[Layout('layouts.guest')] class extends Component
     public function sendVerification(): void
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-
+            if (Auth::user()->hasRole('Cliente'))
+            {
+                $this->redirectIntended(default: route('clientes', absolute: false), navigate: true);
+            }else
+            {
+                $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+            }
             return;
         }
 
@@ -40,7 +45,7 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Gracias por registrarte! Antes de comenzar, ¿podría verificar su dirección de correo electrónico haciendo clic en el enlace que le acabamos de enviar por correo electrónico? Si no recibió el correo electrónico, con gusto le enviaremos otro.') }}
+        {{ __('Gracias por registrarte! Antes de comenzar, debe verificar su casilla, haciendo click en el email que acabamos de enviar (Revise Spam/Correo No Deseado). Si no recibió el correo electrónico, con gusto le enviaremos otro.') }}
     </div>
 
     @if (session('status') == 'verification-link-sent')

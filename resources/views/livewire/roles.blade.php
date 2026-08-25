@@ -57,10 +57,10 @@
                             <td>
                                 @can('roles_edit')
                                 <Button wire:click="editRole({{ $role->id }})" class="margenAbajo btn" title="Editar Rol">
-                                    <img src="icons/314724_document_edit_icon.svg" alt="imagen de lapiz editor" height="20px">
+                                    <img src="{{url('/app-icons/314724_document_edit_icon.svg')}}" alt="imagen de lapiz editor" height="20px">
                                 </Button>
                                 <button wire:click="editPermissionsToRole({{ $role->id }})" class="margenAbajo btn" title="Agregar/Quitar permisos a Rol">
-                                    <img src="icons/9161347_log_out_input_access_security_icon.svg" alt="imagen de Cambio de Roles" height="20px">
+                                    <img src="{{url('/app-icons/9161347_log_out_input_access_security_icon.svg')}}" alt="imagen de Cambio de Roles" height="20px">
                                 </button>
                                 @else
                                     Sin Permisos

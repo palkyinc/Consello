@@ -63,12 +63,12 @@
                                 <button wire:click="edit({{ $evento->id }})"
                                     class="margenAbajo btn btn-outline-secundary"
                                     title="Editar">
-                                    <img src="icons/314724_document_edit_icon.svg" alt="imagen de lapiz editor" height="20px">
+                                    <img src="{{url('app-icons/314724_document_edit_icon.svg')}}" alt="imagen de lapiz editor" height="20px">
                                 </button>
                                 <a href="{{ route('adicionales', ['evento_id' => $evento->id]) }}"
                                     class="margenAbajo btn btn-outline-secundary"
                                     title="ABM Adicionales">
-                                    <img src="icons/file_type_swig_icon_130132.svg" alt="imagen de lapiz editor" height="20px">
+                                    <img src="{{url('app-icons/file_type_swig_icon_130132.svg')}}" alt="imagen de lapiz editor" height="20px">
                                 </a>
                             @else
                                     Sin Permisos Editar
@@ -78,7 +78,7 @@
                                     wire:confirm="Eliminiras Reservas y Adicionales relacionado con el Evento ¿Estás seguro?"
                                     title="Eliminar Evento"
                                     class="margenAbajo btn btn-outline-secundary">
-                                    <img src="icons/trash_delete_bin_remove_icon.svg" alt="delete basket" height="20px">
+                                    <img src="{{url('app-icons/trash_delete_bin_remove_icon.svg')}}" alt="delete basket" height="20px">
                                 </button>
                             @endcan
                         </td>
@@ -95,7 +95,7 @@
             @livewire( EventosAddModal::Class )
         </section>
         <section class="modal fade" id="editModal" tabindex="-1">
-            <livewire:EventosEditModal :evento_id="$evento_id" />
+            <livewire:EventosEditMOdal :evento_id="$evento_id" />
         </section>
     @else
             <livewire:UnauthorizedPage/>

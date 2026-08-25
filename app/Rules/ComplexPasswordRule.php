@@ -14,25 +14,11 @@ class ComplexPasswordRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $fail = preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $value);
-        //dd('app\Rules\ComplexPasswordRule.php');
-    }
-    public function passes($attribute, $value)
-    {
-        // Add your custom password validation logic here
-        // Example: Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character
-        
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $value);
-    }
+        // Expresión regular que valida minúsculas, mayúsculas, números y caracteres especiales (mínimo 8 caracteres)
+        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$!%*?&])[A-Za-z\d$!%*?&]{8,}$/';
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-         return 'EL :attribute debe contener al menos 8 caracteres, una mayúscula, una minúscula, un número, y un caracter especial.';
-         return 'The :attribute must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+        if (!preg_match($pattern, $value)) {
+            $fail('El campo :attribute debe contener al menos 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial.');
+        }
     }
 }
