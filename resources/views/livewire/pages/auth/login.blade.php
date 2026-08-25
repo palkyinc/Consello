@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -25,6 +27,8 @@ new #[Layout('layouts.guest')] class extends Component
         $this->form->authenticate();
 
         Session::regenerate();
+        //$user = Auth::user()->fresh();
+        //dd($user->hasRole('Cliente'));
 
         if (Auth::user()->disabled)
         {
@@ -46,10 +50,10 @@ new #[Layout('layouts.guest')] class extends Component
         } 
         elseif (Auth::user()->hasRole('Cliente'))
         {
-            $this->redirectIntended(default: route('clientes', absolute: false), navigate: true);
+            $this->redirectIntended(default: route('clientes', absolute: false), navigate: false);
         }else
         {
-            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: false);
         }
     }
     private function closeSession(Request $request)

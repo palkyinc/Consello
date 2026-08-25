@@ -29,7 +29,16 @@ new #[Layout('layouts.guest')] class extends Component
 
         session(['auth.password_confirmed_at' => time()]);
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        if (Auth::user()->hasVerifiedEmail()) {
+            if (Auth::user()->hasRole('cliente'))
+            {
+                $this->redirectIntended(default: route('clientes', absolute: false), navigate: true);
+            }else
+            {
+                $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+            }
+            return;
+        }
     }
 }; ?>
 

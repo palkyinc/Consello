@@ -3,7 +3,7 @@
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-//use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules\Password as PasswordRule;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
@@ -36,10 +36,25 @@ new #[Layout('layouts.guest')] class extends Component
      */
     public function resetPassword(): void
     {
-        $this->validate([
+        $validated = $this->validate([
+            // ARGUMENTO 1: Reglas de validación
             'token' => ['required'],
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'confirmed'],
+            'email' => ['required', 'string', 'email:rfc,dns'],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                PasswordRule::min(8)->mixedCase()->numbers(),
+            ],
+        ], [
+            // ARGUMENTO 2: Mensajes personalizados
+            'token.required' => __('El token de recuperación es obligatorio o ha expirado.'),
+            'email.required' => __('El email es obligatorio.'),
+            'email.string' => __('El email debe ser una cadena de texto.'),
+            'email.email' => __('El email debe ser una dirección de correo válida.'),
+            'password.required' => __('La nueva contraseña es obligatoria.'),
+            'password.string' => __('La contraseña debe ser una cadena de texto.'),
+            'password.confirmed' => __('La confirmación de la contraseña no coincide.'),
         ]);
 
         $usuario = (User::where('email', $this->email)->first());
@@ -51,7 +66,7 @@ new #[Layout('layouts.guest')] class extends Component
            ( isset($usuario->password4) && Hash::check($this->password, $usuario->password4) ) ||
            ( isset($usuario->password5) && Hash::check($this->password, $usuario->password5) )
         ) {
-           $this->addError('password', __('No se pueden repetir ninguna de las últimas 6 passwords'));
+           $this->addError('password', __('No se pueden repetir passwords'));
            $this->reset('password');
            $this->reset('password_confirmation');
         } else {

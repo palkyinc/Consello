@@ -13,5 +13,10 @@
     "validation.password.letters": "La contraseña debe contener al menos una letra.",
     "validation.password.symbols": "La contraseña debe contener al menos un carácter especial.",
     "validation.password.numbers": "La contraseña debe contener al menos un número.",
-    "validation.password.uncompromised": "La contraseña ingresada ha aparecido en una filtración de datos. Por favor elige una diferente."
+    "validation.password.uncompromised": "La contraseña ingresada ha aparecido en una filtración de datos. Por favor elige una diferente.",
+    "passwords.reset": "¡Tu contraseña ha sido restablecida con éxito!",
+    "passwords.sent": "¡Te hemos enviado por correo el enlace para restablecer tu contraseña!",
+    "passwords.throttled": "Por favor espera antes de intentar de nuevo.",
+    "passwords.user": "No podemos encontrar un usuario con ese email.",
+    "passwords.token": "Este token de restablecimiento de contraseña no es válido."
 }

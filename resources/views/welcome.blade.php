@@ -24,7 +24,7 @@
             <div>
                 <h1 class="h4 mb-1 fw-bold text-white px-4">¿ESTÁS ADENTRO O TE LO VAN CONTAR?</h1>
             </div>
-            <a href="/clientes" class="btn btn-secondary btn-lg fw-bold px-4">
+            <a href="{{ route('clientes') }}" class="btn btn-secondary btn-lg fw-bold px-4" data-discover="false" rel="external">
                 Quiero ir!
             </a>
         </header>
