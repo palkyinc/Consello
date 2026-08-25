@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rules\Password;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -21,15 +22,20 @@ new #[Layout('layouts.guest')] class extends Component
      */
     public function register(): void
     {
+
         $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ],
-        [
+            'name' => ['required', 'string', 'min:5', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email:rfc,dns', 'max:255', 'unique:'.User::class],
+            'password' => [
+                'required', 
+                'string', 
+                'confirmed', 
+                Password::min(8)->mixedCase()->numbers()
+            ],
+        ], [
             'name.required' => __('El nombre es obligatorio'),
             'name.string' => __('El nombre debe ser una cadena de texto'),
-            'name.min' => __('El nombre debe tener al menos 3 caracteres'),
+            'name.min' => __('El nombre debe tener al menos 5 caracteres'),
             'name.max' => __('El nombre no debe exceder los 255 caracteres'),
             'email.required' => __('El email es obligatorio'),
             'email.string' => __('El email debe ser una cadena de texto'),
@@ -39,7 +45,11 @@ new #[Layout('layouts.guest')] class extends Component
             'email.unique' => __('El email ya está registrado'),
             'password.required' => __('La contraseña es obligatoria'),
             'password.string' => __('La contraseña debe ser una cadena de texto'),
-            'password.confirmed' => __('La confirmación de la contraseña no coincide'),]);
+            'password.confirmed' => __('La confirmación de la contraseña no coincide'),
+            'password.min' => __('La contraseña debe tener al menos 8 caracteres.'),
+            'password.mixed' => __('La contraseña debe incluir mayúsculas y minúsculas.'),
+            'password.numbers' => __('La contraseña debe contener al menos un número.'),
+        ]);
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['expire_at'] = time() + Config::get('constants.PASS_EXPIRE');

@@ -15,7 +15,12 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear -->
 
-## [0.0.5] - 2026-08-24
+## [0.0.6] - 2026-08-24
+### Added 
+### Changed
+- Register, mensajes de error y navbar vista clientes Fixed
+
+## [0.0.5] - 2026-08-24 - Implementado en Server
 ### Added 
 - Se agrego los modelos y migración de Adicional_Cache, Adicional, Evento, Reserva. 
 - ABM de Eventos.

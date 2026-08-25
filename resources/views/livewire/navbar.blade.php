@@ -7,9 +7,14 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					@hasrole ('Cliente')
-						<li class="nav-item p-2">
-							<a class="nav-link" href="/clientes">Eventos</a>
-						</li>	
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item p-2">
+								<a class="nav-link" href="/clientes">Eventos</a>
+							</li>
+							<li class="nav-item p-2">
+								<a class="nav-link" href="/reservas">Mis Reservas</a>
+							</li>
+						</ul>		
 					@else
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
@@ -74,7 +79,6 @@
 												@csrf
 											</form>
 										</li>
-										<li><a class="dropdown-item" href="/reservas">Mis Reservas</a></li>
 										<li><a class="dropdown-item" href="changeViewMode">Día / Noche</a></li>
 									</ul>
 								</li>
