@@ -34,5 +34,9 @@ return [
             'Staff Admin',
             'Staff Ingreso',
             'Staff Barra'
-    ),
+    ),'CONTACT_EMAILS' => [
+        'migvicpereyra@gmail.com',
+        'cristian.g017@gmail.com',
+        'patoelifer341@gmail.com',
+    ],
 ];

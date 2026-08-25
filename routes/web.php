@@ -10,6 +10,7 @@ use App\Livewire\Clientes;
 use App\Livewire\Eventos;
 use App\Livewire\Adicionales;
 use App\Livewire\Reservas;
+use App\Livewire\ContactForm;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -63,6 +64,7 @@ Route::get('/users', Users::Class)->middleware(['auth', 'verified'])->name('user
 Route::get('/permissions', Permissions::Class)->middleware(['auth', 'verified'])->name('permissions');
 Route::get('/roles', Roles::Class)->middleware(['auth', 'verified'])->name('roles');
 Route::get('/changeViewMode', [UserController::Class, 'changeViewMode'])->middleware(['auth', 'verified']);
+Route::get('/contacto', ContactForm::Class)->name('contacto');
 
 # Routes
 Route::get('/eventos', Eventos::Class)->middleware(['auth', 'verified'])->name('eventos');

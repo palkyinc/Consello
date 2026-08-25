@@ -1,48 +1,59 @@
 <div>
-	<div data-bs-theme="{{ Auth::user()->view_mode ? "dark" : 'light'}}">
+	<div data-bs-theme="{{ ( isset(Auth::user()->view_mode) && Auth::user()->view_mode ? "dark" : 'light') ?? 'light'}}">
 		<header>
 			<nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					@hasrole ('Cliente')
+					@guest
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item p-2">
-								<a class="nav-link" href="/clientes">Eventos</a>
-							</li>
-							<li class="nav-item p-2">
-								<a class="nav-link" href="/reservas">Mis Reservas</a>
-							</li>
-						</ul>		
-					@else
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item">
-								<a class="nav-link" href="/dashboard">Principal</a>
-							</li>
-							<li class="nav-item">
-							<a class="nav-link disabled" href="/">Lector</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Datos
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="/eventos">Eventos</a></li>
-								</ul>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Sistema
-								</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="/users">Usuarios</a></li>
-									<li><a class="dropdown-item" href="/roles">Roles</a></li>
-									<li><a class="dropdown-item" href="/permissions">Permisos</a></li>
-								</ul>
+								<a class="nav-link" href="/">Inicio</a>
 							</li>
 						</ul>
-					@endif
+					@else	
+						@hasrole ('Cliente')
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item p-2">
+									<a class="nav-link" href="/clientes">Eventos</a>
+								</li>
+								<li class="nav-item p-2">
+									<a class="nav-link" href="/reservas">Mis Reservas</a>
+								</li>
+								<li class="nav-item p-2">
+									<a class="nav-link" href="/contacto">Contacto</a>
+								</li>
+							</ul>		
+						@else
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item">
+									<a class="nav-link" href="/dashboard">Principal</a>
+								</li>
+								<li class="nav-item">
+								<a class="nav-link disabled" href="/">Lector</a>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Datos
+									</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<li><a class="dropdown-item" href="/eventos">Eventos</a></li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Sistema
+									</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<li><a class="dropdown-item" href="/users">Usuarios</a></li>
+										<li><a class="dropdown-item" href="/roles">Roles</a></li>
+										<li><a class="dropdown-item" href="/permissions">Permisos</a></li>
+									</ul>
+								</li>
+							</ul>
+						@endif
+					@endguest
 				</div>
 				<div class="collapse navbar-collapse">
 					<a class="navbar-brand font-orbitron" href="">
