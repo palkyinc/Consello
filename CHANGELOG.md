@@ -15,9 +15,10 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear -->
 
-## [0.0.6] - 2026-08-24
+## [0.0.6] - 2026-08-26
 ### Added 
 - Vista de Contacto envia emails según array en constants.php
+- Borrado de reservas sin pagar, sin comprobantes de pago cargados.
 ### Changed
 - Register, mensajes de error y navbar vista clientes Fixed
 

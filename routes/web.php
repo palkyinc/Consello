@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 ### Para Borrar
+
 /* 
 use Illuminate\Support\Facades\Artisan;
 
@@ -23,20 +24,19 @@ Route::get('/ejecutar-migraciones-secretas', function () {
     return '<pre>' . Artisan::output() . '</pre>';
 });
  */
+
+# Routes para corregir pblic_html en el servidor
 Route::get('/build/{path}', function ($path) {
     $filePath = base_path('public/build/' . $path);
-
     if (!file_exists($filePath)) {
         abort(404);
     }
-
     $mimeType = match (pathinfo($filePath, PATHINFO_EXTENSION)) {
         'css' => 'text/css',
         'js' => 'text/javascript',
         'json' => 'application/json',
         default => mime_content_type($filePath) ?: 'text/plain',
     };
-
     return response()->file($filePath, [
         'Content-Type' => $mimeType,
     ]);
@@ -45,11 +45,9 @@ Route::get('/build/{path}', function ($path) {
 Route::get('/app-icons/{filename}', function ($filename) {
     // Busca el archivo dentro de la carpeta privada consello_app/public/icons
     $path = base_path('public/icons/' . $filename);
-
     if (!file_exists($path)) {
         abort(404);
     }
-
     return response()->file($path, [
         'Content-Type' => 'image/svg+xml',
     ]);

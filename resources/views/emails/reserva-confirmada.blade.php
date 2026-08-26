@@ -40,7 +40,7 @@
                 @endforeach
 
                 <p class="total">Total a Transferir: ${{ number_format($reserva->tot_pagado, 2, ',', '.') }}</p>
-                <p>La reserva se mantendrá por las proximas 24hs.</p>
+                <p>La reserva se mantendrá por las <strong>proximas 2hs</strong>.</p>
                 <p>Para <strong>Confirmar</strong> tu <strong>Entrada</strong>, debes realizar la transferencia y cargar el comprobante en:</p>
                 <a  href="{{ route('reservas') }}" 
                     style="background-color: #0d6efd; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">

@@ -1,6 +1,6 @@
 <?php
 return [
-    'APP_VERSION' => '0.0.5',
+    'APP_VERSION' => '0.0.6',
     'PASS_EXPIRE' => 3628800,
     'PERMISSIONS_LIST_FACTORY' => array(
             'users_index',
