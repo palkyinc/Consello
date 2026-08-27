@@ -65,7 +65,7 @@
                                     <button wire:click="edit({{ $adicional->id }})"
                                         class="margenAbajo btn btn-outline-secundary"
                                         title="Editar">
-                                        <img src="{{asset('icons/314724_document_edit_icon.svg')}}" alt="imagen de lapiz editor" height="20px">
+                                        <img src="{{url('app-icons/314724_document_edit_icon.svg')}}" alt="imagen de lapiz editor" height="20px">
                                     </button>
                                 @else
                                         Sin Permisos Editar
@@ -75,7 +75,7 @@
                                         wire:confirm="Eliminiras Adicional ¿Estás seguro?"
                                         title="Eliminar Evento"
                                         class="margenAbajo btn btn-outline-secundary">
-                                        <img src="{{asset('icons/trash_delete_bin_remove_icon.svg')}}" alt="delete basket" height="20px">
+                                        <img src="{{url('app-icons/trash_delete_bin_remove_icon.svg')}}" alt="delete basket" height="20px">
                                     </button>
                                 @endcan
                             </td>

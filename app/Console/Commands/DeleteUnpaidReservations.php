@@ -26,7 +26,7 @@ class DeleteUnpaidReservations extends Command
     public function handle()
     {
         $to_delete = Reserva::whereNull('ruta_comprobante')
-                            ->where('created_at', '<=', now()->subHours(1))
+                            ->where('created_at', '<=', now()->subHours(2))
                             ->get();
     foreach ($to_delete as $reserva) {
         # Borrar adicionales en caché vinculados

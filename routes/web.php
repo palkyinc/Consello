@@ -13,6 +13,8 @@ use App\Livewire\Reservas;
 use App\Livewire\ContactForm;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 ### Para Borrar
 
@@ -24,7 +26,23 @@ Route::get('/ejecutar-migraciones-secretas', function () {
     return '<pre>' . Artisan::output() . '</pre>';
 });
  */
+#Route para realizar el Cron en Donweb
+Route::get('/cron/run-scheduler-x98f', function () {
+    try {
+        Artisan::call('reservations:delete-unpaid');
+        
+        // Retorna éxito silencioso
+        return response()->json(['status' => 'ok']);
+    } catch (\Throwable $e) {
+        // Se ejecuta y registra ÚNICAMENTE si ocurre un fallo
+        Log::error("Error en ejecutor de reservas: " . $e->getMessage(), [
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+        ]);
 
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+    }
+});
 # Routes para corregir pblic_html en el servidor
 Route::get('/build/{path}', function ($path) {
     $filePath = base_path('public/build/' . $path);
@@ -41,7 +59,7 @@ Route::get('/build/{path}', function ($path) {
         'Content-Type' => $mimeType,
     ]);
 })->where('path', '.*');
-
+# Routes para corregir pblic_html en el servidor
 Route::get('/app-icons/{filename}', function ($filename) {
     // Busca el archivo dentro de la carpeta privada consello_app/public/icons
     $path = base_path('public/icons/' . $filename);

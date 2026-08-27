@@ -53,8 +53,15 @@ class ReservasUpFileDepositoModal extends Component
         $this->validate();
         $rutaRelativa = $this->archivo->store('eventos/comprobantes', 'public');
         $this->reserva->ruta_comprobante = $rutaRelativa;
-        $this->status['success'][] = 'Comprobante Guardado';
         $this->reserva->save();
+        $reservas_vinculadas = Reserva::select('id', 'ruta_comprobante')
+                                        ->where('reserva_main_id', $this->reserva_id)
+                                        ->get();
+        foreach ($reservas_vinculadas as $item) {
+            $item->ruta_comprobante = $rutaRelativa;
+            $item->save();
+        }
+        $this->status['success'][] = 'Comprobante Guardado';
         $this->closeModal();
     }
     public function closeModal()
