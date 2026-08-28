@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-6 d-flex aƒlign-items-center justify-content-center">
                             @if ($this->calculoReservas() > 0)
-                                {{$this->calculoReservas()}} / 4 Realizadas
+                                {{$this->calculoReservas()}} Dipon. x comprar
                             @endif
                         </div>
                     </div>

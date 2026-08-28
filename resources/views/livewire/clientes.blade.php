@@ -18,13 +18,19 @@
                         <h5 class="card-title">{{$evento->nombre}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $evento->fecha->translatedFormat('D d/M/Y') }}</h6>
                         <h6 class="card-subtitle mb-2 text-muted">Precio: ${{$evento->precio}} por persona.</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Entradas Disponibles.</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{(count($evento->reservas) >= $evento->aforo) ? 'Entradas AGOTADAS' : 'Entradas Disponibles.'}}</h6>
                         <p class="card-text border p-2">{!! nl2br(e($evento->descripcion)) !!}</p>
-                        <button wire:click="addReserva({{ $evento->id }})"
-                            class="margenAbajo btn btn-outline-secundary"
-                            title="Reservar">
-                            RESERVAR
-                        </button>
+                        @if ((count($evento->reservas) >= $evento->aforo))
+                            <p class="card-subtitle mb-2 text-muted">
+                                {{$evento->reservasSinPagar() > 0 ? 'Hay reservas sin CONFIRMAR regresá en 2hs.' : 'Nos vemos en la proxima.'}}
+                            </p>
+                        @else
+                            <button wire:click="addReserva({{ $evento->id }})"
+                                class="margenAbajo btn btn-outline-secundary"
+                                title="Reservar">
+                                RESERVAR
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>

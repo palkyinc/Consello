@@ -41,7 +41,7 @@ class ClientesAddReservaModal extends Component
     {
         if ($this->evento_id && $this->evento_id !== $this->ant_evento_id) {
             $this->evento = Evento::
-                select("id", "nombre", "fecha", "precio")
+                select("*")
                 ->find($this->evento_id);
             $this->precio = $this->evento->precio;
             $this->ant_evento_id = $this->evento_id;
@@ -90,7 +90,16 @@ class ClientesAddReservaModal extends Component
     }
     public function calculoReservas ()
     {
-        return count(auth()->user()->reservas);
+        if ($this->evento) {
+            $remanente_cliente = count(auth()->user()->reservas);
+            $remanente_evento = $this->evento->aforo - count($this->evento->reservas);
+            if ($remanente_cliente <= $remanente_evento) {
+                return $remanente_cliente;
+            } else {
+                return $remanente_evento;
+            }
+        }
+        
     }
     public function save ()
     {

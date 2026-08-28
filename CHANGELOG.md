@@ -15,6 +15,11 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear -->
 
+## [0.0.7] - 2026-08-2X
+### Added 
+### Changed
+- Limte de compra se adecua tambien al aforo.
+
 ## [0.0.6] - 2026-08-26
 ### Added 
 - Vista de Contacto envia emails según array en constants.php

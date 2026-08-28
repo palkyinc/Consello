@@ -17,7 +17,11 @@ new #[Layout('layouts.guest')] class extends Component
         $this->validate([
             'email' => ['required', 'string', 'email'],
         ]);
-        if (!(User::where('email', $this->email)->first())->disabled) {
+        $user = (User::where('email', $this->email)->first());
+        if (!$user) {
+            $this->reset('email');
+            $this->addError('email', __('Email no registrado'));
+        } elseif (!$user->disabled) {
             # code...
             // We will send the password reset link to this user. Once we have attempted
             // to send the link, we will examine the response then see the message we
