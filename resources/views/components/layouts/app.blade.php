@@ -19,7 +19,7 @@
         <header>
             @livewire( Navbar::Class )
         </header>
-        <main class="principal">
+        <main>
             {{ $slot }}
         </main>
         @livewire( Footer::Class )

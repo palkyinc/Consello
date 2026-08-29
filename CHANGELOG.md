@@ -15,8 +15,9 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear -->
 
-## [0.0.7] - 2026-08-2X
+## [0.0.7] - 2026-08-28
 ### Added 
+- Diseño de dashboard
 ### Changed
 - Limte de compra se adecua tambien al aforo.
 

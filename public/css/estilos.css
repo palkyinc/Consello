@@ -57,3 +57,9 @@ table thead tr th {
     /* Aplica la variante Black 900 que elegiste */
     font-style: normal;
 }
+
+@media (min-width: 768px) {
+    .h-md-50 {
+        height: 50% !important;
+    }
+}

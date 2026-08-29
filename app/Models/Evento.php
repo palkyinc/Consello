@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Reserva;
+use App\Models\Adicional;
+use App\Models\User;
 
 class Evento extends Model
 {
@@ -34,6 +36,14 @@ class Evento extends Model
     public function Reservas(): HasMany
     {
         return $this->hasMany(Reserva::class, 'evento_id');
+    }
+    public function adicionales(): HasMany
+    {
+        return $this->hasMany(Adicional::class, 'evento_id');
+    }
+    public function creador(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'creador_id');
     }
     public function reservasSinPagar()
     {
