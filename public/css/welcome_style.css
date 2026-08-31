@@ -11,7 +11,7 @@ body {
     overflow: hidden;
     /* Previene scroll no deseado */
 
-    background-image: url(../img/pattern-02.png);
+    background-image: url('../img/pattern-02.png');
     background-size: contain;
     background-position: center;
     background-repeat: repeat;

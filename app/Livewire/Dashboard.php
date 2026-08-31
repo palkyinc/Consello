@@ -6,11 +6,13 @@ use Livewire\Component;
 use App\Models\Evento;
 use App\Models\Reserva;
 use App\Models\Adicional;
+use Livewire\Attributes\On;
 
 class Dashboard extends Component
 {
     public $evento_id;
     public $eventos;
+    public $reserva_id = 0;
 
     public function mount()
     {
@@ -34,7 +36,20 @@ class Dashboard extends Component
             'asignadas' => $this->getReservasAsignadas(),
             'adicionales' => $this->getAdicionales(),
             'recaudado' => $this->getRecaudacion(),
-            ])->title('Principal');
+            ]);
+    }
+    #[On('closeModal')]
+    public function closeModal (array $status = null)
+    {
+        if ($status) {
+            session()->flash('status', $status['status']);
+        }
+        $this->dispatch('cerrarModal');
+
+    }public function reservaParaConfirmar(int $reserva_id)
+    {
+        $this->reserva_id = $reserva_id;
+        $this->dispatch('showEditModal');
     }
     public function getReservas ()
     {
@@ -76,9 +91,9 @@ class Dashboard extends Component
         $total = 0;
         foreach ($pagadas as $pagada) {
             if (!$pagada->reserva_main_id) {
-                $total += $pagada->tot_pagada;
+                $total += $pagada->tot_pagado;
             }
         }
-        return $total;
+        return number_format($total ?? 0, 2);
     }
 }

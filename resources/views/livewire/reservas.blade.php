@@ -31,11 +31,25 @@
             <p>Entrada para: {{$reserva->evento->nombre}}</p>
             <p>Pagada: {{$reserva->pagada ? 'SI' : 'NO'}}</p>
             <p>Usada: {{$reserva->usada ? 'SI' : 'NO'}}</p>
-            <p>Asignada: {{$reserva->cliente_id ? $reserva->cliente->name : 'NO'}}</p>
+            <p>Asignada:    
+                            @if ($reserva->cliente_id)
+                                {{$reserva->cliente->name . ' (' . $reserva->cliente->email . ')' }}
+                            @else
+                                @if ($reserva->pagada)
+                                    <button class="margenAbajo btn btn-warning">Asignar</button>
+                                @else
+                                    NO
+                                @endif
+                            @endif
+            </p>
             @if (!$reserva->reserva_main_id)
                 <p>
                     @if ($reserva->ruta_comprobante)
-                        <strong class="alert alert-warning">Comprobante en Revisión</strong>
+                        @if ($reserva->pagada)
+                            <strong class="alert alert-success">Comprobante Revisado</strong>
+                        @else
+                            <strong class="alert alert-warning">Comprobante en Revisión</strong>
+                        @endif
                     @else
                         <button wire:click="upFileDeposito({{ $reserva->id }})"
                                 title="Subir archivo deposito"

@@ -1,6 +1,6 @@
 <?php
 return [
-    'APP_VERSION' => '0.0.6',
+    'APP_VERSION' => '0.0.8',
     'PASS_EXPIRE' => 3628800,
     'PERMISSIONS_LIST_FACTORY' => array(
             'users_index',
@@ -12,9 +12,9 @@ return [
             'permissions_index',
             'permissions_edit',
             'permissions_create',
-            'dashborad_index',
-            'dashborad_edit',
-            'dashborad_create',
+            'dashboard_index',
+            'dashboard_edit',
+            'dashboard_create',
             'clientes_index',
             'clientes_edit',
             'clientes_create',
@@ -38,5 +38,6 @@ return [
         'migvicpereyra@gmail.com',
         'cristian.g017@gmail.com',
         'patoelifer341@gmail.com',
+        'consellocpm@gmail.com',
     ],
 ];

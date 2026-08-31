@@ -72,7 +72,7 @@
 							@else
 								<ul class="navbar-nav me-auto">
 									<li class="nav-item">
-										<a class="nav-link" href="/dashboard">Principal</a>
+										<a class="nav-link" href="/dashboard">Dashboard</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link disabled" href="/">Lector</a>

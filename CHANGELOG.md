@@ -1,7 +1,6 @@
 ## Pendings
 ### To add
 - Tickets
-- Contactos
 - Passwords complex
 ### Changed
 ### Deprecated
@@ -14,6 +13,17 @@ php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
 php artisan view:clear -->
+
+## Next Step 
+ - Personalizacion de la entrada.
+ - Agregar boton de Login y Contactanos en landing page
+
+## [0.0.8] - 2026-08-30
+### Added 
+- Modal de verifciacion de comprobante de deposito bancario
+### Changed
+- se cambia envio de emails de palkyinc a Brevo
+- vista reservas se arregla comprobante en revision
 
 ## [0.0.7] - 2026-08-28
 ### Added 

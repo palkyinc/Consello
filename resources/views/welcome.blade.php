@@ -5,16 +5,84 @@
 @if (new DateTime() > new DateTime($fecha_limite))
     <html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Consello</title>
+        <meta charset="UTF-8">
+        <!-- En el <head> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <!-- Opcional: Bootstrap 5 para estilos base limpios -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- En el <head> -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/welcome_style.css">
+        <style>
+            * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Previene scroll no deseado */
+
+    background-image: url('../img/pattern-02.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
+    justify-content: center;
+    background-color: #341b1b;
+    font-family: 'Sora', sans-serif;
+}
+
+/* Header: 15% de la altura de la pantalla */
+header {
+    height: 15vh;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    border-bottom: 1px solid #333;
+}
+
+/* Main: Ocupa exactamente el espacio restante (78vh) */
+main {
+    height: 78vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* La imagen se ajusta estrictamente al alto del main */
+.img-evento {
+    max-height: 100%;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    /* Garantiza proporción cuadrada */
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer: 7% de la altura de la pantalla */
+footer {
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #333;
+    font-size: 0.85rem;
+    color: #FFF;
+}
+
+footer a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+        </style>
 
     </head>
     <body>
@@ -31,7 +99,7 @@
 
         <!-- Main (78vh) -->
         <main>
-            <img src="../img/1000708572.jpg" alt="Flyer del Evento" class="img-evento">
+            <img src="{{asset('img/1000708572.jpg')}}" alt="Flyer del Evento" class="img-evento">
         </main>
 
         <!-- Footer (7vh) -->

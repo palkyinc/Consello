@@ -26,18 +26,29 @@ Route::get('/ejecutar-migraciones-secretas', function () {
     return '<pre>' . Artisan::output() . '</pre>';
 });
  */
+#Route para limpiar caches
+/* Route::get('/limpiar-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return '¡Caché de Laravel limpiada con éxito!';
+}); */
 #Route para realizar el Cron en Donweb
 Route::get('/cron/run-scheduler-x98f', function () {
     try {
+        // 1. Ejecutar el comando programado
         Artisan::call('reservations:delete-unpaid');
-        
-        // Retorna éxito silencioso
+
+        // 2. Procesar los mails/trabajos pendientes en la cola y salir al terminar
+        Artisan::call('queue:work', [
+            '--stop-when-empty' => true,
+            '--tries' => 3,
+        ]);
+
         return response()->json(['status' => 'ok']);
     } catch (\Throwable $e) {
-        // Se ejecuta y registra ÚNICAMENTE si ocurre un fallo
-        Log::error("Error en ejecutor de reservas: " . $e->getMessage(), [
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
+        Log::error("Error en ejecutor de cron: " . $e->getMessage(), [
+            'exception' => $e
         ]);
 
         return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);

@@ -12,7 +12,7 @@
             @endforeach
         @endif
         <!-- Searching box -->
-        <form class="form-inline mx-6 margin-10">
+        <form class="form-inline mx-6">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-6">
