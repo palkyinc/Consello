@@ -31,19 +31,32 @@
             <p>Entrada para: {{$reserva->evento->nombre}}</p>
             <p>Pagada: {{$reserva->pagada ? 'SI' : 'NO'}}</p>
             <p>Usada: {{$reserva->usada ? 'SI' : 'NO'}}</p>
-            <p>Asignada:    
+            <p>Asignada:
+                        @if ($reserva->creador_id === Auth()->User()->id)
                             @if ($reserva->cliente_id)
                                 {{$reserva->cliente->name . ' (' . $reserva->cliente->email . ')' }}
+                                <button wire:click="asignarAsistente({{$reserva->id}})"
+                                        class="margenAbajo btn btn-info"
+                                        title="Reasignar Entrada">
+                                    Reasignar
+                                </button>
                             @else
                                 @if ($reserva->pagada)
-                                    <button class="margenAbajo btn btn-warning">Asignar</button>
+                                    <button wire:click="asignarAsistente({{$reserva->id}})"
+                                            class="margenAbajo btn btn-warning"
+                                            title="Asignar Entrada">
+                                        Asignar
+                                    </button>
                                 @else
                                     NO
                                 @endif
                             @endif
+                        @else
+                                    {{$reserva->cliente_id === Auth()->User()->id ? $reserva->cliente->name . ' (' . $reserva->cliente->email . ')' : 'ERROR'}}
+                        @endif    
             </p>
             @if (!$reserva->reserva_main_id)
-                <p>
+                <p class="py-2">
                     @if ($reserva->ruta_comprobante)
                         @if ($reserva->pagada)
                             <strong class="alert alert-success">Comprobante Revisado</strong>
@@ -94,6 +107,9 @@
         <section class="modal fade" id="editModal" tabindex="-1">
             <livewire:ReservasUpFileDepositoModal :reserva_id="$reserva_id" />
         </section>
+        <section class="modal fade" id="asignarModal" tabindex="-1">
+            <livewire:ReservasAsingGuest :reserva_id="$reserva_id" />
+        </section>
     @else
             <livewire:UnauthorizedPage/>     
     @endcan
@@ -101,16 +117,21 @@
 @script
     <script>
         const myModalsCbuAlias = new bootstrap.Modal('#cbuAliasModal');
+        const myModalsAsignar = new bootstrap.Modal('#asignarModal');
         const myModalsEdit = new bootstrap.Modal('#editModal');
         Livewire.on('cerrarModal', (datas) => {
             myModalsCbuAlias.hide();
             myModalsEdit.hide();
+            myModalsAsignar.hide();
         });
         Livewire.on('showcbuAliasModal', () => {
             myModalsCbuAlias.show();
         });
         Livewire.on('showEditModal', () => {
             myModalsEdit.show();
+        });
+        Livewire.on('showAsignarModal', () => {
+            myModalsAsignar.show();
         });
     </script>
 @endscript

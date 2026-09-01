@@ -8,15 +8,12 @@
 ### To Fixed
 ### Security
 
-<!-- antes de subir proyecto completo
-php artisan config:clear
-php artisan cache:clear
-php artisan route:clear
-php artisan view:clear -->
-
 ## Next Step 
- - Personalizacion de la entrada.
  - Agregar boton de Login y Contactanos en landing page
+
+## [0.0.9] - 2026-09-01
+### Added 
+ - Personalizacion de la entrada.
 
 ## [0.0.8] - 2026-08-30
 ### Added 

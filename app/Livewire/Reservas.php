@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\Reserva;
 
 class Reservas extends Component
 {
@@ -16,7 +17,10 @@ class Reservas extends Component
     }
     private function getReservas()
     {
-        return Auth()->User()->reservas;
+        return Reserva::orWhere('creador_id', Auth()->User()->id)
+                        ->orWhere('cliente_id', Auth()->User()->id)
+                        ->orderBy('id', 'asc')
+                        ->get();
     }
     #[On('closeModal')]
     public function closeModal (array $status = null)
@@ -36,5 +40,10 @@ class Reservas extends Component
     {
         $this->reserva_id = $reserva_id;
         $this->dispatch('showEditModal');
+    }    
+    public function asignarAsistente(int $reserva_id)
+    {
+        $this->reserva_id = $reserva_id;
+        $this->dispatch('showAsignarModal');
     }    
 }

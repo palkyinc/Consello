@@ -75,6 +75,10 @@ new #[Layout('layouts.guest')] class extends Component
             $usuario->password3 = $usuario->password2;
             $usuario->password2 = $usuario->password1;
             $usuario->password1 = $usuario->password;
+            if (!$usuario->email_verified_at) {
+                $usuario->email_verified_at = time();
+            }
+            $usuario->save();
             // Here we will attempt to reset the user's password. If it is successful we
             // will update the password on an actual user model and persist it to the
             // database. Otherwise we will parse the error and return the response.
@@ -90,7 +94,6 @@ new #[Layout('layouts.guest')] class extends Component
                     event(new PasswordReset($user));
                 }
             );
-    
             // If the password was successfully reset, we will redirect the user back to
             // the application's home authenticated view. If there is an error we can
             // redirect them back to where they came from with their error message.

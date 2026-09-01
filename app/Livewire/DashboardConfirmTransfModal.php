@@ -77,7 +77,8 @@ class DashboardConfirmTransfModal extends Component
         $this->reset('reserva');
         $this->reset('ant_reserva_id');
         $this->reset('cantidadReservadas');
-        $this->reset('adicionales_listado');
+        $this->adicionales_listado = [];
+        $this->reset('comprador');
         $this->dispatch('closeModal', ['status' => $this->status]);
         $this->reset('status');
     } 

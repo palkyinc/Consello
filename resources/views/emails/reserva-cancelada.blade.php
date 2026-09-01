@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="card">
-        <h2 style="color: #38354a; margin-top: 0;">Hola, {{ $reserva->user->name ?? 'Cliente' }}</h2>
+        <h2 style="color: #38354a; margin-top: 0;">Hola, {{ $reserva->creador->name ?? 'Cliente' }}</h2>
         <p>Te informamos que tu reserva <strong>#{{ $reserva->id }}</strong> ha sido cancelada automáticamente debido a que transcurrieron 2 horas sin adjuntar el comprobante de pago.</p>
         <hr style="border: none; border-top: 1px solid #eeeeee; margin: 20px 0;">
         <p>Si deseas realizar una nueva reserva, puedes ingresar a nuestro sitio web nuevamente.</p>

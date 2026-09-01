@@ -18,9 +18,16 @@ use Illuminate\Support\Facades\Log;
 
 ### Para Borrar
 
-/* 
-use Illuminate\Support\Facades\Artisan;
+/* Route::get('/mail-preview', function () {
+    // Tomamos un registro de prueba o creamos un objeto genérico
+    $pagoDummy = App\Models\Reserva::find(3);
 
+    // Al hacer return del Mailable, Laravel renderiza el HTML en la pantalla
+    //return new App\Mail\ComprobanteAprobadoMail($pagoDummy);
+    return new App\Mail\ReservaCanceladaMail($pagoDummy);
+}); */
+
+/* 
 Route::get('/ejecutar-migraciones-secretas', function () {
     Artisan::call('migrate', ['--force' => true]);
     return '<pre>' . Artisan::output() . '</pre>';
