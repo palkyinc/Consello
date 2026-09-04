@@ -61,7 +61,12 @@ class DashboardConfirmTransfModal extends Component
     {
         #pasar todas las reservas a pagadas
         $this->reserva->pagada = true;
-        $this->reserva->cliente_id = $this->reserva->creador_id;
+        if (!Reserva::where('cliente_id', $this->reserva->creador_id)
+                    ->where('evento_id', $this->reserva->evento_id)
+                    ->first())
+        {
+            $this->reserva->cliente_id = $this->reserva->creador_id;
+        }
         $this->reserva->save();
         foreach ($this->reserva->reservas as $key => $item) {
                 $item->pagada = true;

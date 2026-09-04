@@ -17,6 +17,7 @@ class Dashboard extends Component
     public function mount()
     {
         $this->eventos = Evento::select("id", "nombre", "fecha")
+                                ->where('activo', true)
                                 ->orderBy('fecha')
                                 ->get();
 

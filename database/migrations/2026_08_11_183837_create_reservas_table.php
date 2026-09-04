@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreign('check_by_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('creador_id');
             $table->foreign('creador_id')->references('id')->on('users')->onDelete('cascade');
-            $table->dateTime('fecha_pago')->nullable();
+            $table->dateTime('fecha_pago')->nullable(); // <--- Se usa para check time NO para fecha de pago.
             $table->string('ticket_code', 255)->nullable();
             $table->string('ruta_comprobante')->nullable(); // <--- Usar string (VARCHAR 255)
             //$table->unsignedBigInteger('reserva_main_id');

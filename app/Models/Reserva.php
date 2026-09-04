@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Reserva extends Model
 {
@@ -17,10 +18,29 @@ class Reserva extends Model
         'creador_id',
         'reserva_main_id',
     ];
+    
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reserva) {
+            $fecha = $reserva->created_at->format('Ymd');
+            $paddedId = str_pad($reserva->id, 5, '0', STR_PAD_LEFT);
+            $randomHash = strtoupper(Str::random(6));
+
+            // Guarda el código generado usando el ID recién asignado
+            $reserva->ticket_code = "{$fecha}-{$paddedId}-{$randomHash}";
+            $reserva->saveQuietly();
+        });
+    }
     public function creador(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creador_id');
+    }
+    public function checkedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'check_by_id');
     }
     public function cliente(): BelongsTo
     {

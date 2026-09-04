@@ -8,20 +8,24 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Reserva;
 
-class ReservaConfirmadaMail extends Mailable implements ShouldQueue
+class EntradaQrMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    Public Reserva $reserva;
-
+    public $qrCode; // Variable para almacenar el código QR
+    
     /**
      * Create a new message instance.
      */
     public function __construct(Reserva $reserva)
     {
-        $this->reserva = $reserva;
+        // En tu Mailable EntradaQrMail.php
+        $this->qrCode = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')
+            ->size(250)
+            ->generate($reserva->ticket_code); // Generar el código QR
     }
 
     /**
@@ -30,7 +34,7 @@ class ReservaConfirmadaMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirmación de tu Reserva - ' . $this->reserva->evento->nombre,
+            subject: 'Entrada Qr Mail',
         );
     }
 
@@ -40,7 +44,7 @@ class ReservaConfirmadaMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'emails.reserva-confirmada',
+            view: 'emails.entrada-qr-mail',
         );
     }
 

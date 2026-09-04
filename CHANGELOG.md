@@ -9,7 +9,16 @@
 ### Security
 
 ## Next Step 
- - Agregar boton de Login y Contactanos en landing page
+- Mail 72hs antes del evento, adventencia a comprador de Tickets no asignados
+- Mail 24hs antes del evento, se envia mails con QR a asignados. Reservas que no se hayan asignado se envia email a comprador con advertencia.
+- habilitar boton reenviar mail con QR.
+
+## [0.0.10] - 2026-09-04
+### Added 
+ - WARNING: Necesita php artisan migrate en produccion.
+ - Agregado boton de Login y Contactanos en landing page
+ - LectorBarra agregado
+ - LectorEntrada Agregado
 
 ## [0.0.9] - 2026-09-01
 ### Added 

@@ -104,6 +104,8 @@ footer a {
 
         <!-- Footer (7vh) -->
         <footer>
+            <a class="btn btn-link" href="/login" target="_blank">LOGIN</a>
+            <a class="btn btn-link" href="/contacto" target="_blank">CONTACTO</a>
             <p class="mb-0">&copy; {{ date('Y') }} CONSELLO CPM. Todos los derechos reservados. Developed By: </p>
             <a href="http://palkyinc.ar" target="blank">PalkyInc</a>
         </footer>
@@ -182,6 +184,8 @@ footer a {
                     </div>
                     <footer>
                         <div class="copyright">
+                            <a href="/login" target="_blank">LOGIN</a>
+                            <a href="/contacto" target="_blank">CONTACTO</a>
                             <p class="text-center">&copy; Consello 2026. Designed by <a href="http://www.palky.ar" target="_blank">Palky Inc</a>.<br>
                             </p>
                         </div>

@@ -1,6 +1,6 @@
 <?php
 return [
-    'APP_VERSION' => '0.0.9',
+    'APP_VERSION' => '0.0.10',
     'PASS_EXPIRE' => 3628800,
     'PERMISSIONS_LIST_FACTORY' => array(
             'users_index',
@@ -27,6 +27,12 @@ return [
             'reservas_index',
             'reservas_edit',
             'reservas_create',
+            'lectorPuerta_index',
+            'lectorPuerta_edit',
+            'lectorPuerta_create',
+            'lectorBarra_index',
+            'lectorBarra_edit',
+            'lectorBarra_create',
     ),
     'ROLES_LIST_FACTORY' => array(
             'Admin',
@@ -40,4 +46,5 @@ return [
         'patoelifer341@gmail.com',
         'consellocpm@gmail.com',
     ],
+    'RESERVAS_MAX' => 4,
 ];

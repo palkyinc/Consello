@@ -91,7 +91,9 @@ class ClientesAddReservaModal extends Component
     public function calculoReservas ()
     {
         if ($this->evento) {
-            $remanente_cliente = count(auth()->user()->reservas);
+            $remanente_cliente = config('constants.RESERVAS_MAX') - count(auth()->user()->reservas()
+                                        ->where('evento_id', $this->evento->id)
+                                        ->get());
             $remanente_evento = $this->evento->aforo - count($this->evento->reservas);
             if ($remanente_cliente <= $remanente_evento) {
                 return $remanente_cliente;
@@ -104,7 +106,7 @@ class ClientesAddReservaModal extends Component
     public function save ()
     {
         $this->validate([
-        'cant_entradas' => 'required|numeric|min:1|max:' . (4 - $this->calculoReservas()),
+        'cant_entradas' => 'required|numeric|min:1|max:' . ($this->calculoReservas()),
             // Reglas para CADA adicional dentro del array asociativo
         'seleccion_adicionales.*' => 'required|integer|min:0|max:3',
         ], [

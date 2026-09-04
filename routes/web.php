@@ -11,6 +11,8 @@ use App\Livewire\Eventos;
 use App\Livewire\Adicionales;
 use App\Livewire\Reservas;
 use App\Livewire\ContactForm;
+use App\Livewire\LectorPuerta;
+use App\Livewire\LectorBarra;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Artisan;
@@ -18,21 +20,26 @@ use Illuminate\Support\Facades\Log;
 
 ### Para Borrar
 
-/* Route::get('/mail-preview', function () {
+/* Route::get('/mail-preview/{reserva_id}', function ($reserva_id) {
     // Tomamos un registro de prueba o creamos un objeto genérico
-    $pagoDummy = App\Models\Reserva::find(3);
+    $pagoDummy = App\Models\Reserva::find($reserva_id);
 
     // Al hacer return del Mailable, Laravel renderiza el HTML en la pantalla
     //return new App\Mail\ComprobanteAprobadoMail($pagoDummy);
-    return new App\Mail\ReservaCanceladaMail($pagoDummy);
+    if ($pagoDummy) {
+        # code...
+        return new App\Mail\EntradaQrMail($pagoDummy);
+    }else {
+        return "No se encontró la reserva con ID";
+    }
 }); */
 
-/* 
+
 Route::get('/ejecutar-migraciones-secretas', function () {
     Artisan::call('migrate', ['--force' => true]);
     return '<pre>' . Artisan::output() . '</pre>';
 });
- */
+
 #Route para limpiar caches
 /* Route::get('/limpiar-cache', function () {
     Artisan::call('config:clear');
@@ -104,6 +111,8 @@ Route::get('/contacto', ContactForm::Class)->name('contacto');
 Route::get('/eventos', Eventos::Class)->middleware(['auth', 'verified'])->name('eventos');
 Route::get('/reservas', Reservas::Class)->middleware(['auth', 'verified'])->name('reservas');
 Route::get('/adicionales/{evento_id}', Adicionales::Class)->middleware(['auth', 'verified'])->name('adicionales');
+Route::get('/lectorPuerta', LectorPuerta::Class)->middleware(['auth', 'verified'])->name('lectorPuerta');
+Route::get('/lectorBarra', LectorBarra::Class)->middleware(['auth', 'verified'])->name('lectorBarra');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

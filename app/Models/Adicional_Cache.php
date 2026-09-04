@@ -23,6 +23,10 @@ class Adicional_Cache extends Model
     {
         return $this->belongsTo(Adicional::class, 'adicional_id');
     }
+    public function checkedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'check_by_id');
+    }
     public function getAdicionalCacheNombre()
     {
         return Adicional::find($this->adicional_id)->nombre; 

@@ -32,7 +32,7 @@
             <p>Pagada: {{$reserva->pagada ? 'SI' : 'NO'}}</p>
             <p>Usada: {{$reserva->usada ? 'SI' : 'NO'}}</p>
             <p>Asignada:
-                        @if ($reserva->creador_id === Auth()->User()->id)
+                        @if ($reserva->creador_id === Auth()->User()->id && !$reserva->usada && !$reserva->mail_sent)
                             @if ($reserva->cliente_id)
                                 {{$reserva->cliente->name . ' (' . $reserva->cliente->email . ')' }}
                                 <button wire:click="asignarAsistente({{$reserva->id}})"
@@ -52,10 +52,17 @@
                                 @endif
                             @endif
                         @else
-                                    {{$reserva->cliente_id === Auth()->User()->id ? $reserva->cliente->name . ' (' . $reserva->cliente->email . ')' : 'ERROR'}}
-                        @endif    
+                                    {{$reserva->cliente->name . ' (' . $reserva->cliente->email . ')' }}
+                        @endif
+                        @if ($reserva->mail_sent)
+                            <button wire:click="enviarMailAsistente({{$reserva->id}})"
+                                    class="margenAbajo btn btn-secondary"
+                                    title="Reenviar email Entrada">
+                                Reenviar QR
+                            </button>
+                        @endif
             </p>
-            @if (!$reserva->reserva_main_id)
+            @if (!$reserva->reserva_main_id && $reserva->creador_id === Auth()->User()->id)
                 <p class="py-2">
                     @if ($reserva->ruta_comprobante)
                         @if ($reserva->pagada)
