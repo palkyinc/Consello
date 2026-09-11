@@ -26,25 +26,31 @@ class DeleteUnpaidReservations extends Command
     public function handle()
     {
         $to_delete = Reserva::whereNull('ruta_comprobante')
-                            ->where('created_at', '<=', now()->subHours(2))
-                            ->get();
-    foreach ($to_delete as $reserva) {
-        # Borrar adicionales en caché vinculados
-        Adicional_Cache::where('reserva_id', $reserva->id)->delete();
+            ->where('created_at', '<=', now()->subHours(2))
+            ->get();
 
-        # Envío de email si es la reserva principal y existe email de contacto/usuario
-        if (!$reserva->reserva_main_id) {
-            $emailDestino = $reserva->creador->email;
-            
-            if ($emailDestino) {
-                Mail::to($emailDestino)->send(new ReservaCanceladaMail($reserva));
+        foreach ($to_delete as $reserva) {
+            // Borrar adicionales en caché vinculados
+            Adicional_Cache::where('reserva_id', $reserva->id)->delete();
+
+            // Definir la variable antes de usarla
+            $emailDestino = $reserva->creador?->email;
+
+            // Envío de email si es la reserva principal y existe email de contacto/usuario
+            if (!$reserva->reserva_main_id && $emailDestino) {
+                $reservaData = [
+                    'id' => $reserva->id,
+                    'creador' => $reserva->creador?->name ?? 'Cliente',
+                    'created_at' => $reserva->created_at,
+                ];
+
+                Mail::to($emailDestino)->send(new ReservaCanceladaMail($reservaData));
             }
+
+            // Eliminar reserva
+            $reserva->delete();
         }
 
-        # Eliminar reserva
-        $reserva->delete();
-    }
-
-    $this->info("Se eliminaron {$to_delete->count()} reservas no pagadas.");
+        $this->info("Se eliminaron {$to_delete->count()} reservas no pagadas.");
     }
 }

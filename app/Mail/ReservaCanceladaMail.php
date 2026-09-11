@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Reserva;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -14,11 +13,11 @@ class ReservaCanceladaMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public Reserva $reserva;
+    public array $reservaData;
 
-    public function __construct(Reserva $reserva)
+    public function __construct(array $reservaData)
     {
-        $this->reserva = $reserva;
+        $this->reservaData = $reservaData;
     }
 
     public function envelope(): Envelope

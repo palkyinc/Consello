@@ -8,7 +8,6 @@
                                 ->where('fecha', '>=', now())
                                 ->orderBy('fecha')
                                 ->first())
-            @dd($evento)
             <html lang="es">
                 <head>
                     <title>Consello</title>

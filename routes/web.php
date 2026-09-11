@@ -41,12 +41,12 @@ use Illuminate\Support\Facades\Log;
 }); */
 
 #Route para limpiar caches
-Route::get('/limpiar-cache', function () {
+/* Route::get('/limpiar-cache', function () {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     return '¡Caché de Laravel limpiada con éxito!';
-});
+}); */
 #Route para realizar el Cron en Donweb
 Route::get('/cron/run-scheduler-x98f', function () {
     try {
