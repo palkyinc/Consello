@@ -23,9 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Indicar que use tus notificaciones en cola
-        ResetPassword::toMailUsing(function ($notifiable, $token) {
-            return (new CustomResetPassword($token))->toMail($notifiable);
-        });
+        //
     }
 }

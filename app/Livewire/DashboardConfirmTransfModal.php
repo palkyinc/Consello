@@ -31,6 +31,7 @@ class DashboardConfirmTransfModal extends Component
     public function boot() 
     {
         if ($this->reserva_id && $this->reserva_id !== $this->ant_reserva_id) {
+            $this->adicionales_listado = [];
             $this->reserva = Reserva::
                 select("*")
                 ->find($this->reserva_id);

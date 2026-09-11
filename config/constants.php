@@ -42,8 +42,6 @@ return [
             'Staff Barra'
     ),'CONTACT_EMAILS' => [
         'migvicpereyra@gmail.com',
-        'cristian.g017@gmail.com',
-        'patoelifer341@gmail.com',
         'consellocpm@gmail.com',
     ],
     'RESERVAS_MAX' => 4,

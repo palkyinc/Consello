@@ -81,7 +81,11 @@ class Dashboard extends Component
     }
     public function getAdicionales()
     {
-        return Evento::select('*')->find($this->evento_id)->adicionales;
+        if ($this->evento_id) {
+            return Evento::select('*')->find($this->evento_id)->adicionales;
+        } else {
+            return [];
+        }
         
     }
     public function getRecaudacion()

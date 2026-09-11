@@ -35,18 +35,18 @@ use Illuminate\Support\Facades\Log;
 }); */
 
 
-Route::get('/ejecutar-migraciones-secretas', function () {
+/* Route::get('/ejecutar-migraciones-secretas', function () {
     Artisan::call('migrate', ['--force' => true]);
     return '<pre>' . Artisan::output() . '</pre>';
-});
+}); */
 
 #Route para limpiar caches
-/* Route::get('/limpiar-cache', function () {
+Route::get('/limpiar-cache', function () {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     return '¡Caché de Laravel limpiada con éxito!';
-}); */
+});
 #Route para realizar el Cron en Donweb
 Route::get('/cron/run-scheduler-x98f', function () {
     try {
