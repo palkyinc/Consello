@@ -40,9 +40,9 @@ return [
             'Staff Admin',
             'Staff Ingreso',
             'Staff Barra'
-    ),'CONTACT_EMAILS' => [
-        'migvicpereyra@gmail.com',
-        'consellocpm@gmail.com',
-    ],
+    ),
+    'CONTACT_EMAILS' => array_filter(
+        explode(',', env('ADMIN_CONTACT_EMAILS', ''))
+    ),
     'RESERVAS_MAX' => 4,
 ];
