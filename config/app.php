@@ -2,6 +2,7 @@
 
 return [
 
+    'cron_secret_key' => env('CRON_SECRET_KEY'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

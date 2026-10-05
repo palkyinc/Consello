@@ -19,3 +19,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/routes/secret.php
+
+
+# macOS / archives
+.DS_Store
+*.zip

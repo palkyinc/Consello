@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Main;
 use App\Livewire\Users;
@@ -15,40 +17,20 @@ use App\Livewire\LectorPuerta;
 use App\Livewire\LectorBarra;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
-### Para Borrar
-
-/* Route::get('/mail-preview/{reserva_id}', function ($reserva_id) {
-    // Tomamos un registro de prueba o creamos un objeto genérico
-    $pagoDummy = App\Models\Reserva::find($reserva_id);
-
-    // Al hacer return del Mailable, Laravel renderiza el HTML en la pantalla
-    //return new App\Mail\ComprobanteAprobadoMail($pagoDummy);
-    if ($pagoDummy) {
-        # code...
-        return new App\Mail\EntradaQrMail($pagoDummy);
-    }else {
-        return "No se encontró la reserva con ID";
-    }
-}); */
-
-
-/* Route::get('/ejecutar-migraciones-secretas', function () {
-    Artisan::call('migrate', ['--force' => true]);
-    return '<pre>' . Artisan::output() . '</pre>';
-}); */
-
-#Route para limpiar caches
-/* Route::get('/limpiar-cache', function () {
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    return '¡Caché de Laravel limpiada con éxito!';
-}); */
 #Route para realizar el Cron en Donweb
-Route::get('/cron/run-scheduler-x98f', function () {
+Route::get('/cron/run-scheduler-x98f', function (Request $request) {
+    $secretKey = config('app.cron_secret_key', env('CRON_SECRET_KEY'));
+
+    // Validar que la clave recibida coincida con la configurada
+    if (!$secretKey || $request->query('key') !== $secretKey) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Acceso no autorizado.'
+        ], 401);
+    }
+
     try {
         // 1. Ejecutar el comando programado
         Artisan::call('reservations:delete-unpaid');
@@ -119,3 +101,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+// Carga rutas secretas únicamente si el archivo existe en el servidor
+if (file_exists(__DIR__ . '/secret.php')) {
+    require __DIR__ . '/secret.php';
+}
